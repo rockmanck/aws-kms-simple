@@ -24,6 +24,7 @@ dependencies {
 //    implementation 'org.springframework.boot:spring-boot-starter-security'
 //    implementation 'org.springframework.cloud:spring-cloud-starter-vault-config'
     implementation 'com.amazonaws:aws-java-sdk-kms:1.12.500'
+    implementation 'com.amazonaws:aws-encryption-sdk-java:2.4.0'
 
     implementation "org.testcontainers:testcontainers:1.18.3"
     implementation "org.testcontainers:localstack:1.18.3"

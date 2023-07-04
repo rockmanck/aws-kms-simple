@@ -3,6 +3,7 @@ package com.example;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.encryptionsdk.kms.KmsMasterKeyProvider;
 import com.amazonaws.services.kms.AWSKMS;
 import com.amazonaws.services.kms.AWSKMSClientBuilder;
 import org.springframework.context.annotation.Bean;
@@ -35,5 +36,16 @@ public class Config {
                         )
                 )
                 .build();
+    }
+
+    @Bean
+    KmsMasterKeyProvider.Builder builder(KmsMasterKeyProvider.RegionalClientSupplier factory) {
+        return KmsMasterKeyProvider.builder()
+                .withCustomClientFactory(factory);
+    }
+
+    @Bean
+    KmsMasterKeyProvider.RegionalClientSupplier customClientFactory(AWSKMS kms) {
+        return regionName -> kms;
     }
 }
